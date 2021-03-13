@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 
 public class BankAccount {
 	private long accountNumber;
-	private double balance;
+	protected double balance;
 	private double interestRate;
 	private Date accountOpenedOn; 
 	
@@ -16,8 +16,8 @@ public class BankAccount {
 		
 	}
 	
-	public BankAccount(double startingBalance) {
-		this.balance = startingBalance;
+	public BankAccount(double openingBalance) {
+		this.balance = openingBalance;
 	}
 	
 	public BankAccount(double balance, double interestRate) {
@@ -49,17 +49,33 @@ public class BankAccount {
 	public long getAccountNumber() {
 		return accountNumber;
 	}
+	
+	public void setAccountNumber(long accountNum) {
+		accountNumber = accountNum;
+	}
 
 	public double getBalance() {
 		return balance;
+	}
+	
+	public void setBalance(double balance) {
+		this.balance = balance;
 	}
 
 	public double getInterestRate() {
 		return interestRate;
 	}
 	
+	public void setInterestRate(double intRate) {
+		interestRate = intRate;
+	}
+	
 	public Date getOpenedOn() {
 		return accountOpenedOn;
+	}
+	
+	public void setAccountOpenedOn(Date date) {
+		accountOpenedOn = date;
 	}
 	
 	public boolean withdraw(double amount) {
@@ -85,8 +101,8 @@ public class BankAccount {
 	
 	static BankAccount readFromString(String accountData) throws ParseException {
 		BankAccount fromStringAccount = new BankAccount();
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
 		try {
-			SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
 			String[] accountDataFormatter = accountData.split(",");
 			fromStringAccount.accountNumber = Long.parseLong(accountDataFormatter[0]);
 			fromStringAccount.balance = Integer.parseInt(accountDataFormatter[1]);
@@ -108,4 +124,3 @@ public class BankAccount {
 	}
 	
 }
-
