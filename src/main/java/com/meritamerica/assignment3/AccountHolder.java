@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import com.meritamerica.assignment3.CDAccount;
-//import com.meritamerica.assignment3.CDOffering;
+import com.meritamerica.assignment3.CDOffering;
 import com.meritamerica.assignment3.CheckingAccount;
 import com.meritamerica.assignment3.SavingsAccount;
 
@@ -25,7 +25,7 @@ public class AccountHolder implements Comparable<AccountHolder>{
 	private int numberOfCheckingAccounts = 0;
 	private int numberOfSavingsAccounts = 0;
 	private int numberOfCDAccounts = 0;
-	//private long accountNumber;
+	private long accountNumber;
 	
 	public AccountHolder() {
 		
@@ -209,6 +209,4 @@ public class AccountHolder implements Comparable<AccountHolder>{
 		return lastName + "," + middleName + "," + firstName + "," + ssn;
 	}
 	
-
-		
 }

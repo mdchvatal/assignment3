@@ -105,8 +105,8 @@ public class BankAccount {
 		try {
 			String[] accountDataFormatter = accountData.split(",");
 			fromStringAccount.accountNumber = Long.parseLong(accountDataFormatter[0]);
-			fromStringAccount.balance = Integer.parseInt(accountDataFormatter[1]);
-			fromStringAccount.interestRate = Integer.parseInt(accountDataFormatter[2]);
+			fromStringAccount.balance = Double.parseDouble(accountDataFormatter[1]);
+			fromStringAccount.interestRate = Double.parseDouble(accountDataFormatter[2]);
 			fromStringAccount.accountOpenedOn = dateFormatter.parse(accountDataFormatter[3]);
 			
 		} catch (NumberFormatException e) {

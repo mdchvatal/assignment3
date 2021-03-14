@@ -1,9 +1,15 @@
 package com.meritamerica.assignment3;
 
+import java.text.ParseException;
+
 public class CDOffering implements Comparable<CDOffering>{
 	
 	private int term;
 	private double interestRate;
+	
+	public CDOffering () {
+		
+	}
 	
 	public CDOffering(int term, double interestRate) {
 		this.term = term;
@@ -13,9 +19,17 @@ public class CDOffering implements Comparable<CDOffering>{
 	public int getTerm() {
 		return term;
 	}
+	
+	public void setTerm(int term) {
+		this.term = term;
+	}
 
 	public double getInterestRate() {
 		return interestRate;
+	}
+	
+	public void setInterestRate(double interestRate) {
+		this.interestRate = interestRate;
 	}
 
 	@Override
@@ -27,6 +41,18 @@ public class CDOffering implements Comparable<CDOffering>{
 		} else {
 			return -1;
 		}
+	}
+	
+	static CDOffering readFromString(String cdOfferingDataString) throws ParseException {
+		CDOffering fromStringAccount = new CDOffering();
+		try {
+			String[] accountDataFormatter = cdOfferingDataString.split(",");
+			fromStringAccount.setTerm(Integer.parseInt(accountDataFormatter[0]));
+			fromStringAccount.setInterestRate(Double.parseDouble(accountDataFormatter[1]));
+		} catch (NumberFormatException e) {
+			System.out.println("That's not valid data input");
+		}
+		return fromStringAccount;
 	}
 
 }
