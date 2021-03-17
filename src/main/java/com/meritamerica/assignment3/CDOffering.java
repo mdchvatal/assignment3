@@ -43,16 +43,14 @@ public class CDOffering implements Comparable<CDOffering>{
 		}
 	}
 	
-	static CDOffering readFromString(String cdOfferingDataString) throws ParseException {
-		CDOffering fromStringAccount = new CDOffering();
+	static CDOffering readFromString(String cdOfferingDataString) throws NumberFormatException{
 		try {
-			String[] accountDataFormatter = cdOfferingDataString.split(",");
-			fromStringAccount.setTerm(Integer.parseInt(accountDataFormatter[0]));
-			fromStringAccount.setInterestRate(Double.parseDouble(accountDataFormatter[1]));
-		} catch (NumberFormatException e) {
-			System.out.println("That's not valid data input");
-		}
+		CDOffering fromStringAccount = new CDOffering();
+		String[] accountDataFormatter = cdOfferingDataString.split(",");
+		fromStringAccount.setTerm(Integer.parseInt(accountDataFormatter[0]));
+		fromStringAccount.setInterestRate(Double.parseDouble(accountDataFormatter[1]));
 		return fromStringAccount;
-	}
-
+		} catch (NumberFormatException e) {e.printStackTrace();}
+		return null;
+	} 
 }

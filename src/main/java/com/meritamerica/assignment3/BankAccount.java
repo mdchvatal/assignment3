@@ -7,10 +7,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class BankAccount {
-	private long accountNumber;
+	protected long accountNumber;
 	protected double balance;
-	private double interestRate;
-	private Date accountOpenedOn; 
+	protected double interestRate;
+	protected Date accountOpenedOn; 
 	
 	public BankAccount() {
 		
@@ -87,31 +87,26 @@ public class BankAccount {
 		}
 	}
 	
-	boolean deposit(double amount) {
+	public boolean deposit(double amount) {
 		if (amount > 0) {
 			balance += amount;
 			return true;
 		} else return false;
 	}
 	
-	double futureValue(double years) {
+	public double futureValue(double years) {
 		double futureValue = (balance * Math.pow((1+interestRate), years));
 		return futureValue;
 	}
 	
-	static BankAccount readFromString(String accountData) throws ParseException {
+	static BankAccount readFromString(String accountData) throws ParseException{
 		BankAccount fromStringAccount = new BankAccount();
 		SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
-		try {
-			String[] accountDataFormatter = accountData.split(",");
-			fromStringAccount.accountNumber = Long.parseLong(accountDataFormatter[0]);
-			fromStringAccount.balance = Double.parseDouble(accountDataFormatter[1]);
-			fromStringAccount.interestRate = Double.parseDouble(accountDataFormatter[2]);
-			fromStringAccount.accountOpenedOn = dateFormatter.parse(accountDataFormatter[3]);
-			
-		} catch (NumberFormatException e) {
-			System.out.println("That's not valid data input");
-		}
+		String[] accountDataFormatter = accountData.split(",");
+		fromStringAccount.accountNumber = Long.parseLong(accountDataFormatter[0]);
+		fromStringAccount.balance = Double.parseDouble(accountDataFormatter[1]);
+		fromStringAccount.interestRate = Double.parseDouble(accountDataFormatter[2]);
+		fromStringAccount.accountOpenedOn = dateFormatter.parse(accountDataFormatter[3]);	
 		return fromStringAccount;
 	}
 

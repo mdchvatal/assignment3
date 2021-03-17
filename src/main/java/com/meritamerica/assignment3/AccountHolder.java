@@ -70,7 +70,6 @@ public class AccountHolder implements Comparable<AccountHolder>{
 		this.ssn = ssn;
 	}
 	
-		
 	public CheckingAccount addCheckingAccount(double openingBalance) {
 		CheckingAccount account = new CheckingAccount();
 		account.setBalance(openingBalance);
@@ -104,8 +103,8 @@ public class AccountHolder implements Comparable<AccountHolder>{
 		for (int i = 0; i < (numberOfCheckingAccounts); i++) {
 			tempBalance += checkingAccounts[i].getBalance();
 		}
-		checkingBalance = tempBalance;
-		return checkingBalance;
+		//checkingBalance = tempBalance;
+		return tempBalance;
 	}
 		
 	public SavingsAccount addSavingsAccount(double openingBalance) {
@@ -141,18 +140,18 @@ public class AccountHolder implements Comparable<AccountHolder>{
 		for (int i = 0; i < (numberOfSavingsAccounts); i++) {
 			tempBalance += savingsAccounts[i].getBalance();
 		}
-		savingsBalance = tempBalance;
-		return savingsBalance;
+		//savingsBalance = tempBalance;
+		return tempBalance;
 	}
 		
 	public CDAccount addCDAccount(CDOffering offering, double openingBalance) {
-		cdAccounts[numberOfCDAccounts++] = new CDAccount(offering, openingBalance);
-		return cdAccounts[numberOfCDAccounts];
+		cdAccounts[numberOfCDAccounts] = new CDAccount(offering, openingBalance);
+		return cdAccounts[numberOfCDAccounts++];
 	}
 		
 	public CDAccount addCDAccount(CDAccount cdAccount) {
-		cdAccounts[numberOfCDAccounts++] = cdAccount;
-		return cdAccounts[numberOfCDAccounts];
+		cdAccounts[numberOfCDAccounts] = cdAccount;
+		return cdAccounts[numberOfCDAccounts++];
 	}
 		
 	public CDAccount[] getCDAccounts() {
@@ -168,8 +167,8 @@ public class AccountHolder implements Comparable<AccountHolder>{
 		for (int i = 0; i < (numberOfCDAccounts); i++) {
 			tempBalance += cdAccounts[i].getBalance();
 		}
-		CDBalance = tempBalance;
-		return CDBalance;
+		//CDBalance = tempBalance;
+		return tempBalance;
 	}
 		
 	public double getCombinedBalance() {
@@ -179,9 +178,9 @@ public class AccountHolder implements Comparable<AccountHolder>{
 
 	@Override
 	public int compareTo(AccountHolder accHold) {
-		if (this.combinedBalance > accHold.combinedBalance) {
+		if (this.combinedBalance < accHold.combinedBalance) {
 			return 1;
-		} else if (this.combinedBalance < accHold.combinedBalance) {
+		} else if (this.combinedBalance > accHold.combinedBalance) {
 			return -1;
 		} else {
 		return 0;
@@ -191,7 +190,6 @@ public class AccountHolder implements Comparable<AccountHolder>{
 	static AccountHolder readFromString(String accountHolderData) throws ParseException {
 		AccountHolder fromStringAccount = new AccountHolder();
 		try {
-			
 			String[] accountDataFormatter = accountHolderData.split(",", -1);
 			fromStringAccount.lastName = accountDataFormatter[0];
 			fromStringAccount.middleName = accountDataFormatter[1];
