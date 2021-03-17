@@ -331,8 +331,8 @@ public class SolutionTest {
     	
     	AccountHolder[] sortedAccountHolders = MeritBank.sortAccountHolders();    	
     	
-    	System.out.println(sortedAccountHolders[0]);
-    	System.out.println(sortedAccountHolders[1]);
+    	System.out.println(sortedAccountHolders[0].getCombinedBalance());
+    	System.out.println(sortedAccountHolders[0].getCheckingBalance());
     	
     	assertEquals(36400, sortedAccountHolders[0].getCombinedBalance(), 0);
     	assertEquals(161000, sortedAccountHolders[1].getCombinedBalance(), 0);

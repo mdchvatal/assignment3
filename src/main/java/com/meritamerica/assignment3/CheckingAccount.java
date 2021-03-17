@@ -24,6 +24,7 @@ public class CheckingAccount extends BankAccount{
 	}
 	
 	static CheckingAccount readFromString(String accountData) throws ParseException{
+		System.out.println(accountData);
 		CheckingAccount fromStringAccount = new CheckingAccount();
 		SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
 		String[] accountDataFormatter = accountData.split(",");
@@ -32,6 +33,6 @@ public class CheckingAccount extends BankAccount{
 		fromStringAccount.interestRate = Double.parseDouble(accountDataFormatter[2]);
 		fromStringAccount.accountOpenedOn = dateFormatter.parse(accountDataFormatter[3]);	
 		return fromStringAccount;
-	}
+	} catch (NumberFormatException nfe) {System.out.println("Numbers ain't no good, buddy...");}
 	
 }

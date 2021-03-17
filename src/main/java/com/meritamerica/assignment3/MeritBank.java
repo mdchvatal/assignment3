@@ -22,13 +22,13 @@ public class MeritBank {
 	
 	
 	static boolean readFromFile(String fileName) {
+		fileStringArrayList = new ArrayList<String>();
 		String line;
 		try (FileReader fileReader = new FileReader(fileName); 
 				BufferedReader buffRead = new BufferedReader(fileReader)) {
-					while (true) {
-						line = buffRead.readLine();
-						if (line == null) {break;}
+					while ((line = buffRead.readLine()) != null) {
 						fileStringArrayList.add(line);
+						System.out.println(line);
 					}
 					doStuffWithFile();
 		return true;				
@@ -60,6 +60,7 @@ public class MeritBank {
 		}
 		numberOfAccountHolders = Integer.parseInt(fileStringArrayList.get(lineCounter));
 		lineCounter++;
+		System.out.println("number of acc holders " + numberOfAccountHolders);
 		if (numberOfAccountHolders > 0) {
 			for (int i = 0; i < numberOfAccountHolders; i++)
 			try {
@@ -67,6 +68,7 @@ public class MeritBank {
 				MeritBank.addAccountHolder(AccountHolder.readFromString(fileStringArrayList.get(lineCounter)));
 				lineCounter++;
 				int numberOfCheckingAccounts = Integer.parseInt(fileStringArrayList.get(lineCounter));
+				System.out.println("Number of checking account " + numberOfCheckingAccounts);
 				if (numberOfCheckingAccounts > 0) {
 					//lineCounter++;
 					for (int j = 0; j < numberOfCheckingAccounts; j++) {
