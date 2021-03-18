@@ -95,7 +95,7 @@ public class BankAccount {
 	}
 	
 	public double futureValue(double years) {
-		double futureValue = (balance * Math.pow((1+interestRate), years));
+		double futureValue = (getBalance() * Math.pow((1+interestRate), years));
 		return futureValue;
 	}
 	
@@ -103,9 +103,9 @@ public class BankAccount {
 		BankAccount fromStringAccount = new BankAccount();
 		SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
 		String[] accountDataFormatter = accountData.split(",");
-		fromStringAccount.accountNumber = Long.parseLong(accountDataFormatter[0]);
-		fromStringAccount.balance = Double.parseDouble(accountDataFormatter[1]);
-		fromStringAccount.interestRate = Double.parseDouble(accountDataFormatter[2]);
+		fromStringAccount.setAccountNumber(Long.parseLong(accountDataFormatter[0]));
+		fromStringAccount.setBalance(Double.parseDouble(accountDataFormatter[1]));
+		fromStringAccount.setInterestRate(Double.parseDouble(accountDataFormatter[2]));
 		fromStringAccount.accountOpenedOn = dateFormatter.parse(accountDataFormatter[3]);	
 		return fromStringAccount;
 	}

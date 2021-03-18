@@ -50,13 +50,15 @@ public class CDAccount extends BankAccount{
 			try {
 				SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
 				String[] accountDataFormatter = accountData.split(",");
-				fromStringAccount.setAccountNumber(Long.parseLong(accountDataFormatter[0]));
-				fromStringAccount.balance = Double.parseDouble(accountDataFormatter[1]);
-				fromStringAccount.setInterestRate(Double.parseDouble(accountDataFormatter[2]));
-				fromStringAccount.setAccountOpenedOn(dateFormatter.parse(accountDataFormatter[3]));
-				fromStringAccount.term = Integer.parseInt(accountDataFormatter[4]);
-			} catch (NumberFormatException e) {
-				System.out.println("That's not valid data input");
+				if (accountDataFormatter.length != 5) {
+					throw new NumberFormatException();
+				}else {
+					fromStringAccount.setAccountNumber(Long.parseLong(accountDataFormatter[0]));
+					fromStringAccount.balance = Double.parseDouble(accountDataFormatter[1]);
+					fromStringAccount.setInterestRate(Double.parseDouble(accountDataFormatter[2]));
+					fromStringAccount.setAccountOpenedOn(dateFormatter.parse(accountDataFormatter[3]));
+					fromStringAccount.term = Integer.parseInt(accountDataFormatter[4]);
+				}
 			} catch (ParseException e) {
 				System.out.println("That's not valid data input");
 				e.printStackTrace();

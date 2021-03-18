@@ -103,7 +103,7 @@ public class AccountHolder implements Comparable<AccountHolder>{
 		for (int i = 0; i < (numberOfCheckingAccounts); i++) {
 			tempBalance += checkingAccounts[i].getBalance();
 		}
-		//checkingBalance = tempBalance;
+		//checkingBalance;
 		return tempBalance;
 	}
 		
@@ -178,24 +178,23 @@ public class AccountHolder implements Comparable<AccountHolder>{
 
 	@Override
 	public int compareTo(AccountHolder accHold) {
-		if (this.combinedBalance < accHold.combinedBalance) {
+		if (this.getCombinedBalance() > accHold.getCombinedBalance()) {
 			return 1;
-		} else if (this.combinedBalance > accHold.combinedBalance) {
+		} else if (this.getCombinedBalance() < accHold.getCombinedBalance()) {
 			return -1;
 		} else {
 		return 0;
 		}
 	}
 	
-	static AccountHolder readFromString(String accountHolderData) throws ParseException {
+	static AccountHolder readFromString(String accountHolderData) throws ParseException{
 		AccountHolder fromStringAccount = new AccountHolder();
 		try {
 			String[] accountDataFormatter = accountHolderData.split(",", -1);
-			fromStringAccount.lastName = accountDataFormatter[0];
-			fromStringAccount.middleName = accountDataFormatter[1];
-			fromStringAccount.firstName = accountDataFormatter[2];
-			fromStringAccount.ssn = accountDataFormatter[3];
-			
+				fromStringAccount.lastName = accountDataFormatter[0];
+				fromStringAccount.middleName = accountDataFormatter[1];
+				fromStringAccount.firstName = accountDataFormatter[2];
+				fromStringAccount.ssn = accountDataFormatter[3];	
 		} catch (NumberFormatException e) {
 			System.out.println("That's not valid data input");
 		}

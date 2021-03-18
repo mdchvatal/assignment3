@@ -28,12 +28,16 @@ public class MeritBank {
 				BufferedReader buffRead = new BufferedReader(fileReader)) {
 					while ((line = buffRead.readLine()) != null) {
 						fileStringArrayList.add(line);
-						System.out.println(line);
+						//System.out.println(line);
 					}
 					doStuffWithFile();
 		return true;				
-		} catch (IOException ioe) {System.out.println("Bad file name. Try Again");}
-		return false;
+		} catch (IOException ioe) {
+			System.out.println("Bad file name. Try Again");
+			return false;
+		}catch (NumberFormatException nfe) {
+			return false;
+		}
 	} 
 	
 	static boolean writeToFile(String fileName) {
@@ -51,6 +55,7 @@ public class MeritBank {
 		++lineCounter;
 		numberOfCDOfferings = Integer.parseInt(fileStringArrayList.get(lineCounter));
 		++lineCounter;
+		System.out.println("Number of CDOffs" + numberOfCDOfferings);
 		if (numberOfCDOfferings > 0) {
 			cdOfferings = new CDOffering[numberOfCDOfferings];
 			for (int i = 0; i < numberOfCDOfferings; i++) {
@@ -112,12 +117,13 @@ public class MeritBank {
 	}
 	
 	public static AccountHolder[] sortAccountHolders() {
-		AccountHolder[] tempArray = new AccountHolder[numberOfAccountHolders];
+	AccountHolder[] tempArray = new AccountHolder[numberOfAccountHolders];
 		for (int i= 0; i < tempArray.length; i++) {
 			tempArray[i] = accountHolders[i];
 		}
 		Arrays.sort(tempArray);
 		return tempArray;
+		
 	}
 
 	public static CDOffering[] getCDOfferings() {
